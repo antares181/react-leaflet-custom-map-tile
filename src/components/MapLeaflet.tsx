@@ -1,19 +1,19 @@
 import { TileLayer, Marker, Popup, MapContainer, useMapEvents, Tooltip } from 'react-leaflet';
 import React, { useState } from 'react';
 import Leaflet, { LatLng, LatLngLiteral, LatLngTuple } from 'leaflet';
-// import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css';
 
-// import icon from 'leaflet/dist/images/marker-icon.png';
-// import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-// import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
 
-// const DefaultIcon = Leaflet.icon({
-//   ...Leaflet.Icon.Default.prototype.options,
-//   iconUrl: icon,
-//   iconRetinaUrl: iconRetina,
-//   shadowUrl: iconShadow,
-// });
-// Leaflet.Marker.prototype.options.icon = DefaultIcon;
+const DefaultIcon = Leaflet.icon({
+  ...Leaflet.Icon.Default.prototype.options,
+  iconUrl: icon,
+  iconRetinaUrl: iconRetina,
+  shadowUrl: iconShadow,
+});
+Leaflet.Marker.prototype.options.icon = DefaultIcon;
 
 export default function SkateApp() {
   const position: LatLng | LatLngLiteral | LatLngTuple | undefined = [-4.781379, 105.499322];
@@ -21,18 +21,18 @@ export default function SkateApp() {
     [[-4.775656504833561, 105.48912329690062], [-4.789696222664833, 105.520534430988]];
 
   return (
-    <MapContainer center={position} zoom={18} scrollWheelZoom={true}>
-      {/* <TileLayer
+    <MapContainer center={position} zoom={18} maxBounds={bounds} scrollWheelZoom={true}>
+      <TileLayer
         tms={true}
         opacity={1}
         minZoom={18}
         maxZoom={22}
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="./data/{z}/{x}/{y}.png"
-      /> */}
+      />
       {/* 17-21 */}
       <TileLayer
-        // zIndex={-1}
+        zIndex={-1}
         minZoom={18}
         maxZoom={22}
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -44,9 +44,9 @@ export default function SkateApp() {
             A pretty CSS3 popup. <br /> Easily customizable.
           </div>
         </Popup>
-        {/* <Tooltip onOpen={() => console.info('tootl')}>dsadsadsadsa</Tooltip> */}
+        <Tooltip onOpen={() => console.info('tootl')}>dsadsadsadsa</Tooltip>
       </Marker>
-      {/* <LocationMarker /> */}
+      <LocationMarker />
     </MapContainer>
   );
 }
